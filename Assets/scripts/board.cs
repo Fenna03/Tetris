@@ -9,9 +9,15 @@ public class board : MonoBehaviour
     public TetrominoData[] tetrominoes;
     public Vector3Int spawnPosition;
     public Vector2Int boardSize = new Vector2Int(10, 20);
+
     public TMP_Text scoreText;
     public int score;
     public int bestScore;
+    public new AudioSource audio;
+
+    private int totalLinesCleared = 0;
+    private int linesCleared = 0;
+    public int currentLevel = 1;
 
     public RectInt Bounds
     {
@@ -35,6 +41,7 @@ public class board : MonoBehaviour
     private void Start()
     {
         SpawnPiece();
+        audio = GetComponent<AudioSource>();
     }
 
     public void SpawnPiece()
@@ -98,26 +105,53 @@ public class board : MonoBehaviour
         return true;
     }
 
-    //in the ClearLines loop, count the times if(isLineFull) is triggered, after the loop ends, then calculate the score with the amount of cleared lines that happened
     public void clearLines()
     {
         RectInt bounds = this.Bounds;
         int row = bounds.yMin;
+        linesCleared = 0; // Reset linesCleared count at the beginning
+        //Debug.Log(totalLinesCleared);
 
-        while(row < bounds.yMax)
+        while (row < bounds.yMax)
         {
             if (isLineFull(row))
             {
                 lineClear(row);
-               score = score + 0100;
-               scoreText.text = "Score: " + score;
+                linesCleared++; // Increment the count of lines cleared
+                totalLinesCleared++;
+                audio.Play();
             }
             else
             {
                 row++;
             }
         }
+
+        // Calculate score based on the number of lines cleared
+        switch (linesCleared)
+        {
+            case 1:
+                score += 40;
+                break;
+            case 2:
+                score += 100;
+                break;
+            case 3:
+                score += 300;
+                break;
+            case 4:
+                score += 1200;
+                break;
+        }
+        scoreText.text = "Score: " + score; // Update the score text
+
+        if (totalLinesCleared >= 10 && activePiece.stepDelay >= 0.1f)
+        {
+            activePiece.stepDelay -= 0.1f; // Decrease stepDelay
+            totalLinesCleared = 0;
+        }
     }
+
 
     private bool isLineFull(int row)
     {
@@ -138,7 +172,7 @@ public class board : MonoBehaviour
     private void lineClear(int row)
     {
         RectInt bounds = this.Bounds;
-
+       // linesCleared++;
         for (int col = bounds.xMin; col < bounds.xMax; col++)
         {
             Vector3Int position = new Vector3Int(col, row, 0);
