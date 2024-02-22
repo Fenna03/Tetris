@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using TMPro;
+using Unity.VisualScripting.Antlr3.Runtime;
 
 public class board : MonoBehaviour
 {
@@ -18,6 +19,10 @@ public class board : MonoBehaviour
     private int totalLinesCleared = 0;
     private int linesCleared = 0;
     public int currentLevel = 1;
+
+    public GameObject optionsMenu;
+    public GameObject deadScreen;
+    public bool paused;
 
     public RectInt Bounds
     {
@@ -44,6 +49,14 @@ public class board : MonoBehaviour
         audio = GetComponent<AudioSource>();
     }
 
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            TogglePause();
+        }
+    }
+
     public void SpawnPiece()
     {
         int random = Random.Range(0, this.tetrominoes.Length);
@@ -62,8 +75,22 @@ public class board : MonoBehaviour
     }
     public void GameOver()
     {
-        tilemap.ClearAllTiles();
+        //tilemap.ClearAllTiles();
+        ToggleGameOver();
     }
+
+    public void ToggleGameOver()
+    {
+        deadScreen.gameObject.SetActive(!deadScreen.gameObject.activeSelf);
+        paused = !paused; // Toggle the paused state
+    }
+
+    public void TogglePause()
+    {
+        optionsMenu.gameObject.SetActive(!optionsMenu.gameObject.activeSelf);
+        paused = !paused; // Toggle the paused state
+    }
+
 
     public void Set(Piece piece)
     {
