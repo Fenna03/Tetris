@@ -10,11 +10,15 @@ public class Menu : MonoBehaviour
     {
         if (gameMode == 0)
         {
-            SceneManager.LoadScene("Tetris");
+            SceneManager.LoadScene("Menu");
         }
         if (gameMode == 1)
         {
-            SceneManager.LoadScene("Menu");
+            SceneManager.LoadScene("Tetris");
+        }
+        if(gameMode == 2)
+        {
+            SceneManager.LoadScene("HowToPlay");
         }
     }
 

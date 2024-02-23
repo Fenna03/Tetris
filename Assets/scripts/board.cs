@@ -12,8 +12,8 @@ public class board : MonoBehaviour
     public Vector2Int boardSize = new Vector2Int(10, 20);
 
     public TMP_Text scoreText;
+    public TMP_Text FinalScoreText;
     public int score;
-    public int bestScore;
     public new AudioSource audio;
 
     private int totalLinesCleared = 0;
@@ -47,6 +47,7 @@ public class board : MonoBehaviour
     {
         SpawnPiece();
         audio = GetComponent<AudioSource>();
+       // UpdatePause();
     }
 
     public void Update()
@@ -77,11 +78,14 @@ public class board : MonoBehaviour
     {
         //tilemap.ClearAllTiles();
         ToggleGameOver();
+
     }
 
     public void ToggleGameOver()
     {
-        deadScreen.gameObject.SetActive(!deadScreen.gameObject.activeSelf);
+        deadScreen.gameObject.SetActive(true);
+        FinalScoreText.text = "Your score: " + score;
+        Time.timeScale = 0;
         paused = !paused; // Toggle the paused state
     }
 
@@ -89,8 +93,25 @@ public class board : MonoBehaviour
     {
         optionsMenu.gameObject.SetActive(!optionsMenu.gameObject.activeSelf);
         paused = !paused; // Toggle the paused state
+        Time.timeScale = paused ? 0 : 1; // Set Time.timeScale based on the paused state
+        Debug.Log("Paused state: " + paused);
     }
 
+    //void UpdatePause()
+    //{
+    //    //if escape is pressed everything in the game will stop
+    //    if (paused)
+    //    {
+    //        Time.timeScale = 0;
+    //        Debug.Log("Time.timeScale set to 0");
+    //    }
+    //    //everything goes like normal
+    //    else
+    //    {
+    //        Time.timeScale = 1;
+    //        Debug.Log("Time.timeScale set to 1");
+    //    }
+    //}
 
     public void Set(Piece piece)
     {
