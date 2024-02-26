@@ -24,6 +24,10 @@ public class board : MonoBehaviour
     public GameObject deadScreen;
     public bool paused;
 
+
+    public int width; // Represents the width of the board
+    public int height; // Represents the height of the board
+
     public RectInt Bounds
     {
         get

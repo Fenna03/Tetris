@@ -20,7 +20,9 @@ public class Piece : MonoBehaviour
     public Vector3Int position { get; private set; }
     public int rotationIndex { get; private set; }
 
- 
+    private Vector2 touchStartPos;
+    private bool isTouchActive = false;
+
     public void Initialize(board board, Vector3Int position, TetrominoData data)
     {
         this.board = board;
@@ -43,6 +45,8 @@ public class Piece : MonoBehaviour
 
     private void Update()
     {
+
+        HandleInput();
         this.board.Clear(this);
 
         this.lockTime += Time.deltaTime;
@@ -83,6 +87,19 @@ public class Piece : MonoBehaviour
         }
         this.board.Set(this);
     }
+
+    private void HandleInput()
+    {
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+            Vector3 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
+            touchPos.z = 0f;
+            touchPos.y = 0f;
+            transform.position = touchPos;
+        }
+    }
+
 
     private void Step()
     {
