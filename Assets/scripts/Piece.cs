@@ -43,10 +43,10 @@ public class Piece : MonoBehaviour
         }
     }
 
-    private void Update()
+    public void Update()
     {
 
-        HandleInput();
+        //HandleInput();
         this.board.Clear(this);
 
         this.lockTime += Time.deltaTime;
@@ -88,17 +88,17 @@ public class Piece : MonoBehaviour
         this.board.Set(this);
     }
 
-    private void HandleInput()
-    {
-        if (Input.touchCount > 0)
-        {
-            Touch touch = Input.GetTouch(0);
-            Vector3 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
-            touchPos.z = 0f;
-            touchPos.y = 0f;
-            transform.position = touchPos;
-        }
-    }
+    //private void HandleInput()
+    //{
+    //    if (Input.touchCount > 0)
+    //    {
+    //        Touch touch = Input.GetTouch(0);
+    //        Vector3 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
+    //        touchPos.z = 0f;
+    //        touchPos.y = 0f;
+    //        transform.position = touchPos;
+    //    }
+    //}
 
 
     private void Step()
@@ -130,7 +130,7 @@ public class Piece : MonoBehaviour
         this.board.SpawnPiece();
     }
 
-    private bool Move(Vector2Int translation)
+    public bool Move(Vector2Int translation)
     {
         Vector3Int newPosition = this.position;
         newPosition.x += translation.x;
@@ -147,7 +147,7 @@ public class Piece : MonoBehaviour
         return valid;
     }
 
-    private void Rotate(int direction)
+    public void Rotate(int direction)
     {
         int originalRotation = this.rotationIndex;
         this.rotationIndex = Wrap(this.rotationIndex + direction, 0, 4);
@@ -227,6 +227,25 @@ public class Piece : MonoBehaviour
         else
         {
             return min + (input - min) % (max - min);
+        }
+    }
+    public void dance(string input)
+    {
+       if(input == "right")
+        {
+            Move(Vector2Int.right);
+        }
+       if(input == "down")
+        {
+            Move(Vector2Int.down);
+        }
+       if(input == "left")
+        {
+            Move(Vector2Int.left);
+        }
+       if(input == "hardDrop")
+        {
+            HardDrop();
         }
     }
 }
