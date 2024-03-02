@@ -640,8 +640,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 89698481}
         m_TargetAssemblyTypeName: Piece, Assembly-CSharp
-        m_MethodName: dance
-        m_Mode: 5
+        m_MethodName: OnRightButtonClick
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1960,7 +1960,7 @@ RectTransform:
   m_Father: {fileID: 1268031935}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 4.7180023, y: 0}
   m_SizeDelta: {x: 19.436, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3405,8 +3405,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 89698481}
         m_TargetAssemblyTypeName: Piece, Assembly-CSharp
-        m_MethodName: dance
-        m_Mode: 5
+        m_MethodName: OnDownButtonClick
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5039,8 +5039,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 89698481}
         m_TargetAssemblyTypeName: Piece, Assembly-CSharp
-        m_MethodName: dance
-        m_Mode: 5
+        m_MethodName: OnHardDropButtonClick
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6141,8 +6141,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 89698481}
         m_TargetAssemblyTypeName: Piece, Assembly-CSharp
-        m_MethodName: dance
-        m_Mode: 5
+        m_MethodName: OnLeftButtonClick
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -7780,14 +7780,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 89698481}
         m_TargetAssemblyTypeName: Piece, Assembly-CSharp
-        m_MethodName: Rotate
-        m_Mode: 3
+        m_MethodName: dance
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: -1
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: rotateClockwise
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1932096229
@@ -8193,14 +8193,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 89698481}
         m_TargetAssemblyTypeName: Piece, Assembly-CSharp
-        m_MethodName: Rotate
-        m_Mode: 3
+        m_MethodName: dance
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: rotateCounterClockwise
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1986142225
@@ -8390,7 +8390,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1999162651
 RectTransform:
   m_ObjectHideFlags: 0

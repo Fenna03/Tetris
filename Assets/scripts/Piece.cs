@@ -88,15 +88,56 @@ public class Piece : MonoBehaviour
         this.board.Set(this);
     }
 
-    //private void HandleInput()
+    //public void HandleTouchInput()
     //{
     //    if (Input.touchCount > 0)
     //    {
     //        Touch touch = Input.GetTouch(0);
-    //        Vector3 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
-    //        touchPos.z = 0f;
-    //        touchPos.y = 0f;
-    //        transform.position = touchPos;
+
+    //        if (touch.phase == TouchPhase.Began)
+    //        {
+    //            touchStartPos = touch.position;
+    //            isTouchActive = true;
+    //        }
+    //        else if (touch.phase == TouchPhase.Ended)
+    //        {
+    //            if (isTouchActive)
+    //            {
+    //                Vector2 touchEndPos = touch.position;
+    //                Vector2 touchDelta = touchEndPos - touchStartPos;
+
+    //                if (touchDelta.magnitude > minSwipeDistance)
+    //                {
+    //                    // Determine swipe direction
+    //                    float angle = Mathf.Atan2(touchDelta.y, touchDelta.x) * Mathf.Rad2Deg;
+    //                    if (angle < 0) angle += 360;
+
+    //                    if (angle < 45 || angle > 315) // Right Swipe
+    //                    {
+    //                        dance("right");
+    //                    }
+    //                    else if (angle > 135 && angle < 225) // Left Swipe
+    //                    {
+    //                        dance("left");
+    //                    }
+    //                    else if (angle > 45 && angle < 135) // Up Swipe
+    //                    {
+    //                        dance("rotateClockwise");
+    //                    }
+    //                    else if (angle > 225 && angle < 315) // Down Swipe
+    //                    {
+    //                        dance("down");
+    //                    }
+    //                }
+    //                else
+    //                {
+    //                    // Tap detected
+    //                    dance("hardDrop");
+    //                }
+
+    //                isTouchActive = false;
+    //            }
+    //        }
     //    }
     //}
 
@@ -231,22 +272,57 @@ public class Piece : MonoBehaviour
     }
     public void dance(string input)
     {
-       if(input == "right")
+        switch (input)
         {
-            Move(Vector2Int.right);
+            case "right":
+                Move(Vector2Int.right);
+                break;
+            case "down":
+                Move(Vector2Int.down);
+                break;
+            case "left":
+                Move(Vector2Int.left);
+                break;
+            case "rotateClockwise":
+                Rotate(1);
+                break;
+            case "rotateCounterClockwise":
+                Rotate(-1);
+                break;
+            case "hardDrop":
+                HardDrop();
+                break;
         }
-       if(input == "down")
-        {
-            Move(Vector2Int.down);
-        }
-       if(input == "left")
-        {
-            Move(Vector2Int.left);
-        }
-       if(input == "hardDrop")
-        {
-            HardDrop();
-        }
+    }
+
+    public void OnRightButtonClick()
+    {
+        dance("right");
+    }
+
+    public void OnLeftButtonClick()
+    {
+        dance("left");
+    }
+
+    public void OnDownButtonClick()
+    {
+        dance("down");
+    }
+
+    public void OnRotateClockwiseButtonClick()
+    {
+        dance("rotateClockwise");
+    }
+
+    public void OnRotateCounterClockwiseButtonClick()
+    {
+        dance("rotateCounterClockwise");
+    }
+
+    public void OnHardDropButtonClick()
+    {
+        dance("hardDrop");
     }
 }
 
