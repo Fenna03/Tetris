@@ -8,13 +8,11 @@ public class Music : MonoBehaviour
     private AudioSource _audioSource;
     public TMP_Text textMeshProOn;
     public TMP_Text textMeshProOff;
-    public GameObject OnBG;
-    public GameObject OffBG;
 
 
     private void Awake()
     {
-        DontDestroyOnLoad(transform.gameObject);
+       // DontDestroyOnLoad(transform.gameObject);
         _audioSource = GetComponent<AudioSource>();
         sfxButtonState(true);
     }

@@ -32,6 +32,6 @@ public class Menu : MonoBehaviour
     //resets game, just starts it again
     public void ResetGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(1);
     }
 }

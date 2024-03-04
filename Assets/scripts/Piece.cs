@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
@@ -12,14 +14,17 @@ public class Piece : MonoBehaviour
     private float lockTime;
 
     private float currentStepDelay;
-    private int currentlevel = 1;
+
+    public bool goingDown = false;
+    private bool goingLeft = false;
+    private bool goingRight = false;
 
     public board board {  get; private set; }
     public TetrominoData data { get; private set; }
     public Vector3Int[] cells { get; private set; }
     public Vector3Int position { get; private set; }
     public int rotationIndex { get; private set; }
-
+    public Transform coolObject;
     private Vector2 touchStartPos;
     private bool isTouchActive = false;
 
@@ -45,7 +50,6 @@ public class Piece : MonoBehaviour
 
     public void Update()
     {
-
         //HandleInput();
         this.board.Clear(this);
 
@@ -62,26 +66,55 @@ public class Piece : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.A))
         {
-            Move(Vector2Int.left);
+            goingLeft = true;
+            //Move(Vector2Int.left);
         }
-        else if (Input.GetKeyDown(KeyCode.D))
+        else
         {
-            Move(Vector2Int.right);
+            goingLeft= false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            goingRight = true;
+            //Move(Vector2Int.right);
+        }
+        else
+        {
+            goingRight = false;
         }
 
         if (Input.GetKeyDown(KeyCode.S))
         {
-            Move(Vector2Int.down);
+            goingDown = true;
+            //Move(Vector2Int.down);
+        }
+        else
+        {
+            goingDown = false;
         }
 
-        if(Input.GetKey(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            HardDrop();
+        }
+
+        if(goingDown == true)
         {
             Move(Vector2Int.down);
-           // HardDrop();
-           //has to be with GetKeyDown
+        }
+        if (goingRight == true)
+        {
+            Move(Vector2Int.right);
+
+        }
+        if (goingLeft == true)
+        {
+            Move(Vector2Int.left);
         }
 
-        if(Time.time >= this.stepTime)
+
+        if (Time.time >= this.stepTime)
         {
             Step();
         }
@@ -177,7 +210,8 @@ public class Piece : MonoBehaviour
         newPosition.x += translation.x;
         newPosition.y += translation.y;
 
-        bool valid = this.board.IsValidPosition(this, newPosition);
+        bool valid = board.IsValidPosition(this, newPosition);
+        //Debug.Log(valid);
 
         if (valid)
         {
@@ -270,59 +304,35 @@ public class Piece : MonoBehaviour
             return min + (input - min) % (max - min);
         }
     }
-    public void dance(string input)
-    {
-        switch (input)
-        {
-            case "right":
-                Move(Vector2Int.right);
-                break;
-            case "down":
-                Move(Vector2Int.down);
-                break;
-            case "left":
-                Move(Vector2Int.left);
-                break;
-            case "rotateClockwise":
-                Rotate(1);
-                break;
-            case "rotateCounterClockwise":
-                Rotate(-1);
-                break;
-            case "hardDrop":
-                HardDrop();
-                break;
-        }
-    }
 
     public void OnRightButtonClick()
     {
-        dance("right");
+        goingRight = true;
     }
 
     public void OnLeftButtonClick()
     {
-        dance("left");
+        goingLeft = true;
     }
 
     public void OnDownButtonClick()
     {
-        dance("down");
+        goingDown = true;
     }
 
     public void OnRotateClockwiseButtonClick()
     {
-        dance("rotateClockwise");
+        Rotate(-1);
     }
 
     public void OnRotateCounterClockwiseButtonClick()
     {
-        dance("rotateCounterClockwise");
+        Rotate(1);
     }
 
     public void OnHardDropButtonClick()
     {
-        dance("hardDrop");
+        HardDrop();
     }
 }
 
