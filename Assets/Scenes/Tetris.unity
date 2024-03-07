@@ -225,6 +225,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stepDelay: 1
   lockDelay: 0.5
+  goingDown: 0
+  uiButRotateL: 0
+  uiButRotateR: 0
+  uihardDrop: 0
+  coolObject: {fileID: 0}
 --- !u!82 &89698482
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7804,7 +7809,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -7837,7 +7842,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 89698481}
         m_TargetAssemblyTypeName: Piece, Assembly-CSharp
-        m_MethodName: OnRotateClockwiseButtonClick
+        m_MethodName: OnRotateCounterClockwiseButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8217,7 +8222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -8250,7 +8255,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 89698481}
         m_TargetAssemblyTypeName: Piece, Assembly-CSharp
-        m_MethodName: OnRotateCounterClockwiseButtonClick
+        m_MethodName: OnRotateClockwiseButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -15,9 +15,15 @@ public class Piece : MonoBehaviour
 
     private float currentStepDelay;
 
+    // UI button logic
     public bool goingDown = false;
     private bool goingLeft = false;
     private bool goingRight = false;
+    public bool uiButRotateL = false;
+    public bool uiButRotateR = false;
+    public bool uihardDrop = false;
+
+
 
     public board board {  get; private set; }
     public TetrominoData data { get; private set; }
@@ -55,62 +61,39 @@ public class Piece : MonoBehaviour
 
         this.lockTime += Time.deltaTime;
 
-        if(Input.GetKeyDown(KeyCode.Q))
+        if(Input.GetKeyDown(KeyCode.Q) || uiButRotateL == true)
         {
+            uiButRotateL = false;
             Rotate(-1);
         }
-        else if (Input.GetKeyDown(KeyCode.E))
+        else if (Input.GetKeyDown(KeyCode.E) || uiButRotateR == true)
         {
+            uiButRotateR = false;
             Rotate(1);
         }
 
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A) || goingLeft == true)
         {
-            goingLeft = true;
-            //Move(Vector2Int.left);
-        }
-        else
-        {
-            goingLeft= false;
+            goingLeft = false;
+            Move(Vector2Int.left);
         }
 
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            goingRight = true;
-            //Move(Vector2Int.right);
-        }
-        else
+        if (Input.GetKeyDown(KeyCode.D) || goingRight == true)
         {
             goingRight = false;
+            Move(Vector2Int.right);
         }
 
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            goingDown = true;
-            //Move(Vector2Int.down);
-        }
-        else
+        if (Input.GetKeyDown(KeyCode.S) || goingDown == true)
         {
             goingDown = false;
-        }
-
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            HardDrop();
-        }
-
-        if(goingDown == true)
-        {
             Move(Vector2Int.down);
         }
-        if (goingRight == true)
-        {
-            Move(Vector2Int.right);
 
-        }
-        if (goingLeft == true)
+        if(Input.GetKeyDown(KeyCode.Space) || uihardDrop == true)
         {
-            Move(Vector2Int.left);
+            uihardDrop = false;
+            HardDrop();
         }
 
 
@@ -263,6 +246,8 @@ public class Piece : MonoBehaviour
 
             this.cells[i] = new Vector3Int(x, y, 0);
         }
+
+        Debug.Log(" test");
     }
 
     private bool testWallKicks(int rotationIndex, int rotationDirection)
@@ -320,19 +305,21 @@ public class Piece : MonoBehaviour
         goingDown = true;
     }
 
-    public void OnRotateClockwiseButtonClick()
-    {
-        Rotate(-1);
-    }
-
     public void OnRotateCounterClockwiseButtonClick()
     {
-        Rotate(1);
+        uiButRotateL = true;
     }
+
+    public void OnRotateClockwiseButtonClick()
+    {
+        uiButRotateR = true;
+    }
+
+   
 
     public void OnHardDropButtonClick()
     {
-        HardDrop();
+        uihardDrop = true;
     }
 }
 
