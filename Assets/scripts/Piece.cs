@@ -23,7 +23,7 @@ public class Piece : MonoBehaviour
     public bool uiButRotateR = false;
     public bool uihardDrop = false;
 
-
+    private float minSwipeDistance = 0.5f;
 
     public board board {  get; private set; }
     public TetrominoData data { get; private set; }
@@ -56,7 +56,7 @@ public class Piece : MonoBehaviour
 
     public void Update()
     {
-        //HandleInput();
+        HandleTouchInput();
         this.board.Clear(this);
 
         this.lockTime += Time.deltaTime;
@@ -104,59 +104,69 @@ public class Piece : MonoBehaviour
         this.board.Set(this);
     }
 
-    //public void HandleTouchInput()
-    //{
-    //    if (Input.touchCount > 0)
-    //    {
-    //        Touch touch = Input.GetTouch(0);
+    private void HandleTouchInput()
+    {
+        if (!goingLeft && !goingRight && !goingDown && !uiButRotateL && !uiButRotateR && !uihardDrop) // Check if no button input is active
+        {
+            if (Input.touchCount > 0)
+            {
+                Touch touch = Input.GetTouch(0);
 
-    //        if (touch.phase == TouchPhase.Began)
-    //        {
-    //            touchStartPos = touch.position;
-    //            isTouchActive = true;
-    //        }
-    //        else if (touch.phase == TouchPhase.Ended)
-    //        {
-    //            if (isTouchActive)
-    //            {
-    //                Vector2 touchEndPos = touch.position;
-    //                Vector2 touchDelta = touchEndPos - touchStartPos;
+                if (touch.phase == TouchPhase.Began)
+                {
+                    touchStartPos = touch.position;
+                    isTouchActive = true;
+                }
+                else if (touch.phase == TouchPhase.Ended)
+                {
+                    if (isTouchActive)
+                    {
+                        Vector2 touchEndPos = touch.position;
+                        Vector2 touchDelta = touchEndPos - touchStartPos;
 
-    //                if (touchDelta.magnitude > minSwipeDistance)
-    //                {
-    //                    // Determine swipe direction
-    //                    float angle = Mathf.Atan2(touchDelta.y, touchDelta.x) * Mathf.Rad2Deg;
-    //                    if (angle < 0) angle += 360;
+                        if (touchDelta.magnitude > minSwipeDistance)
+                        {
+                            // Determine swipe direction
+                            float angle = Mathf.Atan2(touchDelta.y, touchDelta.x) * Mathf.Rad2Deg;
+                            if (angle < 0) angle += 360;
 
-    //                    if (angle < 45 || angle > 315) // Right Swipe
-    //                    {
-    //                        dance("right");
-    //                    }
-    //                    else if (angle > 135 && angle < 225) // Left Swipe
-    //                    {
-    //                        dance("left");
-    //                    }
-    //                    else if (angle > 45 && angle < 135) // Up Swipe
-    //                    {
-    //                        dance("rotateClockwise");
-    //                    }
-    //                    else if (angle > 225 && angle < 315) // Down Swipe
-    //                    {
-    //                        dance("down");
-    //                    }
-    //                }
-    //                else
-    //                {
-    //                    // Tap detected
-    //                    dance("hardDrop");
-    //                }
+                            if (angle < 45 || angle > 315) // Right Swipe
+                            {
+                                goingRight = true;
+                            }
+                            else if (angle > 135 && angle < 225) // Left Swipe
+                            {
+                                goingLeft = true;
+                            }
+                            else if (angle > 45 && angle < 135) // Up Swipe
+                            {
+                                // Nothing for now
+                            }
+                            else if (angle > 225 && angle < 315) // Down Swipe
+                            {
+                                goingDown = true;
+                            }
+                        }
+                        else
+                        {
+                            // Tap detected
+                            // Determine tap side (left or right)
+                            if (touch.position.x < Screen.width / 2)
+                            {
+                                uiButRotateL = true; // Left side tap for counter-clockwise rotation
+                            }
+                            else
+                            {
+                                uiButRotateR = true; // Right side tap for clockwise rotation
+                            }
+                        }
 
-    //                isTouchActive = false;
-    //            }
-    //        }
-    //    }
-    //}
-
+                        isTouchActive = false;
+                    }
+                }
+            }
+        }
+    }
 
     private void Step()
     {
@@ -314,9 +324,7 @@ public class Piece : MonoBehaviour
     {
         uiButRotateR = true;
     }
-
    
-
     public void OnHardDropButtonClick()
     {
         uihardDrop = true;
