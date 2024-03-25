@@ -5,6 +5,15 @@ using Unity.VisualScripting.Antlr3.Runtime;
 
 public class board : MonoBehaviour
 {
+    [SerializeField]
+    private float resetTime = 30.0f;
+
+    private float lastInputTime;
+
+    private Vector3 lastMousePosition;
+
+    private bool videoIsPlaying;
+
     public Tilemap tilemap { get; private set; } 
     public Piece activePiece { get; private set; } 
     public TetrominoData[] tetrominoes;
@@ -63,11 +72,44 @@ public class board : MonoBehaviour
 
     public void Update()
     {
+        // Detect if :
+        //    - A key has been pressed
+        //    - A finger touched the screen
+        //    - The mouse has been moved
+        // If so, save when the current time
+        if (Input.anyKey || Input.touchCount > 0 || (Input.mousePosition - lastMousePosition).sqrMagnitude > Mathf.Epsilon)
+        {
+            lastInputTime = Time.time;
+            StopVideo();
+        }
+
+        // Save the current mouse position in the current frame to compare with the mouse position the nextframe
+        lastMousePosition = Input.mousePosition;
+
+        // Compute the time between now and the last time Unity received an input
+        // and play the video if the time is greater than the time you defined in the inspector
+        // Also, make sure the video is not already playing
+        if (!videoIsPlaying && (Time.time - lastInputTime) > resetTime)
+        {
+            PlayVideo();
+        }
         // Check for input to toggle pause
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             TogglePause();
         }
+    }
+
+    private void PlayVideo()
+    {
+        // Your code 
+        videoIsPlaying = true;
+    }
+
+    private void StopVideo()
+    {
+        // Your code 
+        videoIsPlaying = false;
     }
 
     public void SpawnPiece()
@@ -207,11 +249,13 @@ public class board : MonoBehaviour
             activePiece.stepDelay = 0.05f;
             textMeshProFast.color = Color.white;
 
-        } else
+        } 
+        else
         {
             textMeshProFast.color = Color.gray;
 
             // currently this resets the speed to 1 eventhough it should be faster (after clearing some lines)
+            // use baseSpeed and currentSpeed to store variables
             // DOTO: calculate what speed it should be
             activePiece.stepDelay = 1.0f;
         }
