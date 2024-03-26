@@ -232,7 +232,7 @@ MonoBehaviour:
   uiButRotateL: 0
   uiButRotateR: 0
   uihardDrop: 0
-  menu: {fileID: 0}
+  menu: {fileID: 1999162652}
   coolObject: {fileID: 0}
 --- !u!82 &89698482
 AudioSource:
@@ -856,8 +856,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 178512577}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.44178796, y: -69.89181, z: -1618.4417}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalPosition: {x: -0.44178796, y: 57.2, z: -1618.4417}
   m_LocalScale: {x: 18.8125, y: 18.8125, z: 18.8125}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -867,7 +867,7 @@ Transform:
   - {fileID: 1932096227}
   - {fileID: 1986142223}
   m_Father: {fileID: 1069667603}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!1 &185935209
 GameObject:
   m_ObjectHideFlags: 0
@@ -1087,7 +1087,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 89698481}
         m_TargetAssemblyTypeName: Piece, Assembly-CSharp
-        m_MethodName: OnRightButtonClick
+        m_MethodName: OnLeftButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1531,12 +1531,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 663278376}
-  - {fileID: 838413473}
   m_Father: {fileID: 1069667603}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -115, y: 210.75}
+  m_AnchoredPosition: {x: 110.5, y: -222.1}
   m_SizeDelta: {x: 43.355, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &235059182
@@ -1669,8 +1668,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 265184283}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 158, y: 29, z: -1618.4417}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalPosition: {x: -169.5045, y: -26.244907, z: -1618.4417}
   m_LocalScale: {x: 18.8125, y: 18.8125, z: 18.8125}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1680,7 +1679,7 @@ Transform:
   - {fileID: 279991253}
   - {fileID: 875798380}
   m_Father: {fileID: 1069667603}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!1 &272090092
 GameObject:
   m_ObjectHideFlags: 0
@@ -1851,7 +1850,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 89698481}
         m_TargetAssemblyTypeName: Piece, Assembly-CSharp
-        m_MethodName: OnRotateCounterClockwiseButtonClick
+        m_MethodName: OnRotateClockwiseButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2258,7 +2257,7 @@ Transform:
   m_GameObject: {fileID: 376150519}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -13, z: 0}
+  m_LocalPosition: {x: 0.58, y: -9, z: 0}
   m_LocalScale: {x: 2, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2934,13 +2933,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.0000002, z: -10}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalPosition: {x: 0, y: 1.9999998, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!114 &519420033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3215,7 +3214,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 89698481}
         m_TargetAssemblyTypeName: Piece, Assembly-CSharp
-        m_MethodName: OnLeftButtonClick
+        m_MethodName: OnRightButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4096,7 +4095,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 89698481}
         m_TargetAssemblyTypeName: Piece, Assembly-CSharp
-        m_MethodName: OnRightButtonClick
+        m_MethodName: OnLeftButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6605,7 +6604,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 89698481}
         m_TargetAssemblyTypeName: Piece, Assembly-CSharp
-        m_MethodName: OnDownButtonClick
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6816,11 +6815,11 @@ Transform:
   m_GameObject: {fileID: 838413471}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2, y: 0.890625, z: -1693.125}
+  m_LocalPosition: {x: 112.875, y: -222.36938, z: -1693.125}
   m_LocalScale: {x: 9.40625, y: 9.40625, z: 18.8125}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 235059181}
+  m_Father: {fileID: 1069667603}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &847519113
 GameObject:
@@ -7187,7 +7186,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 89698481}
         m_TargetAssemblyTypeName: Piece, Assembly-CSharp
-        m_MethodName: OnRotateClockwiseButtonClick
+        m_MethodName: OnRotateCounterClockwiseButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7377,7 +7376,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 880749514}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -22.3, y: -10.894821, z: -3.969879}
   m_LocalScale: {x: 1.1548, y: 1.1579, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8508,6 +8507,7 @@ RectTransform:
   m_LocalScale: {x: 0.053156145, y: 0.053156145, z: 0.053156145}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 838413473}
   - {fileID: 235059181}
   - {fileID: 494209980}
   - {fileID: 1949224295}
@@ -9941,7 +9941,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 89698481}
         m_TargetAssemblyTypeName: Piece, Assembly-CSharp
-        m_MethodName: OnDownButtonClick
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10156,13 +10156,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 89698477}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 89698481}
+        m_TargetAssemblyTypeName: Piece, Assembly-CSharp
+        m_MethodName: OnDownButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -10687,7 +10687,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 89698481}
         m_TargetAssemblyTypeName: Piece, Assembly-CSharp
-        m_MethodName: OnLeftButtonClick
+        m_MethodName: OnRightButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11980,13 +11980,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 89698477}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 89698481}
+        m_TargetAssemblyTypeName: Piece, Assembly-CSharp
+        m_MethodName: OnDownButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -12593,7 +12593,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 89698481}
         m_TargetAssemblyTypeName: Piece, Assembly-CSharp
-        m_MethodName: OnRotateCounterClockwiseButtonClick
+        m_MethodName: OnRotateClockwiseButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12800,16 +12800,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1949224294}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1069667603}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -37.625, y: 208.1056}
+  m_AnchoredPosition: {x: 41.71, y: -221.9}
   m_SizeDelta: {x: 13.4459, y: 3.5292}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1949224296
@@ -12895,7 +12895,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -22.906229, y: -20.514769, z: -151.24689, w: -16.276308}
+  m_margin: {x: -22.906229, y: -20.514769, z: -89.988525, w: -16.276308}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -13140,7 +13140,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 89698481}
         m_TargetAssemblyTypeName: Piece, Assembly-CSharp
-        m_MethodName: OnRotateClockwiseButtonClick
+        m_MethodName: OnRotateCounterClockwiseButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

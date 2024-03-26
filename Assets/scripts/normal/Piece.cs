@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -26,6 +27,7 @@ public class Piece : MonoBehaviour
     private float minSwipeDistance = 0.5f;
 
     public board board {  get; private set; }
+    public Menu menu;
     public TetrominoData data { get; private set; }
     public Vector3Int[] cells { get; private set; }
     public Vector3Int position { get; private set; }
@@ -33,6 +35,7 @@ public class Piece : MonoBehaviour
     public Transform coolObject;
     private Vector2 touchStartPos;
     private bool isTouchActive = false;
+
 
     public void Initialize(board board, Vector3Int position, TetrominoData data)
     {
@@ -43,7 +46,7 @@ public class Piece : MonoBehaviour
         this.stepTime = Time.time + this.stepDelay;
         this.lockTime = 0f;
 
-        if(this.cells == null)
+        if (this.cells == null)
         {
             this.cells = new Vector3Int[data.cells.Length];
         }
@@ -56,46 +59,86 @@ public class Piece : MonoBehaviour
 
     public void Update()
     {
-        HandleTouchInput();
+        //HandleTouchInput();
         this.board.Clear(this);
-
+        int mode = PlayerPrefs.GetInt("mode");
+        Debug.Log(mode);
         this.lockTime += Time.deltaTime;
 
-        if(Input.GetKeyDown(KeyCode.Q) || uiButRotateL == true)
+        if(mode == 1 || mode == 5)
         {
-            uiButRotateL = false;
-            Rotate(-1);
-        }
-        else if (Input.GetKeyDown(KeyCode.E) || uiButRotateR == true)
-        {
-            uiButRotateR = false;
-            Rotate(1);
-        }
+            if (Input.GetKeyDown(KeyCode.Q) || uiButRotateL == true)
+            {
+                uiButRotateL = false;
+                Rotate(-1);
+            }
+            else if (Input.GetKeyDown(KeyCode.E) || uiButRotateR == true)
+            {
+                uiButRotateR = false;
+                Rotate(1);
+            }
 
-        if (Input.GetKeyDown(KeyCode.A) || goingLeft == true)
-        {
-            goingLeft = false;
-            Move(Vector2Int.left);
-        }
+            if (Input.GetKeyDown(KeyCode.A) || goingLeft == true)
+            {
+                goingLeft = false;
+                Move(Vector2Int.left);
+            }
 
-        if (Input.GetKeyDown(KeyCode.D) || goingRight == true)
-        {
-            goingRight = false;
-            Move(Vector2Int.right);
-        }
+            if (Input.GetKeyDown(KeyCode.D) || goingRight == true)
+            {
+                goingRight = false;
+                Move(Vector2Int.right);
+            }
 
-        if (Input.GetKeyDown(KeyCode.S) || goingDown == true)
-        {
-            goingDown = false;
-            Move(Vector2Int.down);
-        }
+            if (Input.GetKeyDown(KeyCode.S) || goingDown == true)
+            {
+                goingDown = false;
+                Move(Vector2Int.down);
+            }
 
-        if(Input.GetKeyDown(KeyCode.Space) || uihardDrop == true)
-        {
-            uihardDrop = false;
-            HardDrop();
+            if (Input.GetKeyDown(KeyCode.Space) || uihardDrop == true)
+            {
+                uihardDrop = false;
+                HardDrop();
+            }
         }
+        else if (mode == 3 || mode == 4)
+        {
+            if (Input.GetKeyDown(KeyCode.E) || uiButRotateL == true)
+            {
+                uiButRotateL = false;
+                Rotate(-1);
+            }
+            else if (Input.GetKeyDown(KeyCode.Q) || uiButRotateR == true)
+            {
+                uiButRotateR = false;
+                Rotate(1);
+            }
 
+            if (Input.GetKeyDown(KeyCode.D) || goingLeft == true)
+            {
+                goingLeft = false;
+                Move(Vector2Int.left);
+            }
+
+            if (Input.GetKeyDown(KeyCode.A) || goingRight == true)
+            {
+                goingRight = false;
+                Move(Vector2Int.right);
+            }
+
+            if (Input.GetKeyDown(KeyCode.W) || goingDown == true)
+            {
+                goingDown = false;
+                Move(Vector2Int.down);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space) || uihardDrop == true)
+            {
+                uihardDrop = false;
+                HardDrop();
+            }
+        }
 
         if (Time.time >= this.stepTime)
         {
@@ -104,69 +147,69 @@ public class Piece : MonoBehaviour
         this.board.Set(this);
     }
 
-    private void HandleTouchInput()
-    {
-        if (!goingLeft && !goingRight && !goingDown && !uiButRotateL && !uiButRotateR && !uihardDrop) // Check if no button input is active
-        {
-            if (Input.touchCount > 0)
-            {
-                Touch touch = Input.GetTouch(0);
+    //private void HandleTouchInput()
+    //{
+    //    if (!goingLeft && !goingRight && !goingDown && !uiButRotateL && !uiButRotateR && !uihardDrop) // Check if no button input is active
+    //    {
+    //        if (Input.touchCount > 0)
+    //        {
+    //            Touch touch = Input.GetTouch(0);
 
-                if (touch.phase == TouchPhase.Began)
-                {
-                    touchStartPos = touch.position;
-                    isTouchActive = true;
-                }
-                else if (touch.phase == TouchPhase.Ended)
-                {
-                    if (isTouchActive)
-                    {
-                        Vector2 touchEndPos = touch.position;
-                        Vector2 touchDelta = touchEndPos - touchStartPos;
+    //            if (touch.phase == TouchPhase.Began)
+    //            {
+    //                touchStartPos = touch.position;
+    //                isTouchActive = true;
+    //            }
+    //            else if (touch.phase == TouchPhase.Ended)
+    //            {
+    //                if (isTouchActive)
+    //                {
+    //                    Vector2 touchEndPos = touch.position;
+    //                    Vector2 touchDelta = touchEndPos - touchStartPos;
 
-                        if (touchDelta.magnitude > minSwipeDistance)
-                        {
-                            // Determine swipe direction
-                            float angle = Mathf.Atan2(touchDelta.y, touchDelta.x) * Mathf.Rad2Deg;
-                            if (angle < 0) angle += 360;
+    //                    if (touchDelta.magnitude > minSwipeDistance)
+    //                    {
+    //                        // Determine swipe direction
+    //                        float angle = Mathf.Atan2(touchDelta.y, touchDelta.x) * Mathf.Rad2Deg;
+    //                        if (angle < 0) angle += 360;
 
-                            if (angle < 45 || angle > 315) // Right Swipe
-                            {
-                                goingRight = true;
-                            }
-                            else if (angle > 135 && angle < 225) // Left Swipe
-                            {
-                                goingLeft = true;
-                            }
-                            else if (angle > 45 && angle < 135) // Up Swipe
-                            {
-                                // Nothing for now
-                            }
-                            else if (angle > 225 && angle < 315) // Down Swipe
-                            {
-                                goingDown = true;
-                            }
-                        }
-                        else
-                        {
-                            // Tap detected
-                            // Determine tap side (left or right)
-                            if (touch.position.x < Screen.width / 2)
-                            {
-                                uiButRotateL = true; // Left side tap for counter-clockwise rotation
-                            }
-                            else
-                            {
-                                uiButRotateR = true; // Right side tap for clockwise rotation
-                            }
-                        }
+    //                        if (angle < 45 || angle > 315) // Right Swipe
+    //                        {
+    //                            goingRight = true;
+    //                        }
+    //                        else if (angle > 135 && angle < 225) // Left Swipe
+    //                        {
+    //                            goingLeft = true;
+    //                        }
+    //                        else if (angle > 45 && angle < 135) // Up Swipe
+    //                        {
+    //                            // Nothing for now
+    //                        }
+    //                        else if (angle > 225 && angle < 315) // Down Swipe
+    //                        {
+    //                            goingDown = true;
+    //                        }
+    //                    }
+    //                    else
+    //                    {
+    //                        // Tap detected
+    //                        // Determine tap side (left or right)
+    //                        if (touch.position.x < Screen.width / 2)
+    //                        {
+    //                            uiButRotateL = true; // Left side tap for counter-clockwise rotation
+    //                        }
+    //                        else
+    //                        {
+    //                            uiButRotateR = true; // Right side tap for clockwise rotation
+    //                        }
+    //                    }
 
-                        isTouchActive = false;
-                    }
-                }
-            }
-        }
-    }
+    //                    isTouchActive = false;
+    //                }
+    //            }
+    //        }
+    //    }
+    //}
 
     private void Step()
     {

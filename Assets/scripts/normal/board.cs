@@ -248,7 +248,6 @@ public class board : MonoBehaviour
         {
             activePiece.stepDelay = 0.05f;
             textMeshProFast.color = Color.white;
-
         } 
         else
         {

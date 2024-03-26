@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR;
+
 
 public class Menu : MonoBehaviour
 {
-    //starts gameMode
     public void PlayGame(int gameMode = 1)
     {
+        PlayerPrefs.SetInt("mode", gameMode);
+
         if (gameMode == 0)
         {
             SceneManager.LoadScene("Menu");
@@ -19,6 +23,18 @@ public class Menu : MonoBehaviour
         if(gameMode == 2)
         {
             SceneManager.LoadScene("HowToPlay");
+        }
+        if(gameMode == 3)
+        {
+            SceneManager.LoadScene("TetrisUpsideDown");
+        }
+        if (gameMode == 4)
+        {
+            SceneManager.LoadScene("reverse");
+        }
+        if(gameMode == 5)
+        {
+            SceneManager.LoadScene("blackWhite");
         }
     }
 
