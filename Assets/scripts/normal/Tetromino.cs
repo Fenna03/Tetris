@@ -25,6 +25,14 @@ public struct TetrominoData
         this.cells = Data.Cells[this.tetromino];
         this.wallkicks = Data.WallKicks[this.tetromino];
     }
+
+    //public string tetrominoType
+    //{
+    //    get
+    //    {
+    //        return tetromino.ToString(); // Get the string representation of the enum value
+    //    }
+    //}
 }
 
 

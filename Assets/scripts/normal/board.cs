@@ -117,6 +117,8 @@ public class board : MonoBehaviour
         int random = Random.Range(0, this.tetrominoes.Length);
         TetrominoData data = this.tetrominoes[random];
 
+        //Debug.Log("Next Piece: " + data.tetrominoType);
+
         this.activePiece.Initialize(this, this.spawnPosition, data);
 
         if (IsValidPosition(this.activePiece, this.spawnPosition))
