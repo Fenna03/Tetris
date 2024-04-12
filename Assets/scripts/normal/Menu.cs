@@ -41,8 +41,9 @@ public class Menu : MonoBehaviour
     //quits gameMode
     public void QuitGame()
     {
-        Debug.Log("Quit");
-        Application.Quit();
+        //Debug.Log("Quit");
+        //Application.Quit();
+        SceneManager.LoadScene("menu");
     }
 
     //resets game, just starts it again

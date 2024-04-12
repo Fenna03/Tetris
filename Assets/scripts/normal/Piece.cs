@@ -78,19 +78,19 @@ public class Piece : MonoBehaviour
                 Rotate(1);
             }
 
-            if (Input.GetKeyDown(KeyCode.A) || goingLeft == true)
+            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow) || goingLeft == true)
             {
                 goingLeft = false;
                 Move(Vector2Int.left);
             }
 
-            if (Input.GetKeyDown(KeyCode.D) || goingRight == true)
+            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow) || goingRight == true)
             {
                 goingRight = false;
                 Move(Vector2Int.right);
             }
 
-            if (Input.GetKeyDown(KeyCode.S) || goingDown == true)
+            if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow) || goingDown == true)
             {
                 goingDown = false;
                 Move(Vector2Int.down);
